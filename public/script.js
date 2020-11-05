@@ -1,44 +1,46 @@
-// Here's everything from the video tutorial on making a type ahead
+fetch("/api", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then(blob => blob.json())
+    .then(data => food.push(...data));
 
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+const searchInput = document.querySelector(".textInput");
+const suggestions = document.querySelector(".suggestions");
+searchInput.addEventListener('keyup', displaymatches);
 
-const cities = [];
+const food = [];
 
-fetch(endpoint)
-    .then(blob => blob.json())
-    .then(data => cities.push(...data)); //promise chain, we don't want to do that
-
-function findMatches(wordToMatch, cities) {
-    return cities.filter(place => {
-        // Here we need to figure out if city or state that matches what has been searched
-        const regex = new RegExp(wordToMatch, 'gi'); // g means global and i means insensitive
-        return place.city.match(regex) || place.state.match(regex);
-    })
+function findMatches(wordToMatch, food) {
+  return food.filter((place) => {
+    // Here we need to figure out if name or category that matches what has been searched
+    const regex = new RegExp(wordToMatch, "gi"); // g means global and i means insensitive
+    return place.name.match(regex) || place.category.match(regex);
+  });
 }
+
 function displaymatches(){
-    const matchArray = findMatches(this.value, cities);
+    const matchArray = findMatches(this.value, food);
     const html = matchArray.map(place => {
         return `
         <li>
-            <span class="name">${place.city}, ${place.state}</span>
-            <span class="name">${place.population}</span>
+            <span class="name">${place.name}</span>
+            <span class="category">${place.category}</span>
+            <span class="city">${place.city}</span>
         </li>
         `;
     }).join('');
     suggestions.innerHTML = html;
 }
 
-const searchInput = document.querySelector('.search');
-const suggestions = document.querySelector('.suggestions');
-
-searchInput.addEventListener('keyup', displaymatches);
 
 /* 
     - We will need a different event listener
     - We will also need to remove some of the fluff in this method
     - Otherwise I think this will work
 
-document.body.addEventListener('submit', async (e) => {
+document.body.addEventListener('keyup', async (e) => {
     e.preventDefault(); // this stops whatever the browser wanted to do itself.
     const form = $(e.target).serializeArray();
     fetch('/api', {
@@ -54,4 +56,4 @@ document.body.addEventListener('submit', async (e) => {
         console.log(err);
       });
   });
-  */
+*/
