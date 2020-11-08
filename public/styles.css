@@ -1,6 +1,6 @@
 /*CSS*/
 body {
-    background: #495867;
+    background: #3d405b;
   }
   
   .wrapper {
@@ -16,7 +16,7 @@ body {
     font-family: 'Oswald', sans-serif;
     font-weight: Medium 500;
     font-size: 25;
-    color: #fe5f55;
+    color: #81b29a;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -33,7 +33,7 @@ body {
   }
 }
 ul li{
-  background-image: linear-gradient(#bdd5ea, #577399);
+  background-image: linear-gradient(#f2cc8f, #e07a5f);
   padding: 1%;
   margin-bottom: 10px;
   display: -moz-inline-box;
@@ -48,7 +48,7 @@ ul li{
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin: auto;
 }
 
 .eleven_columns{
