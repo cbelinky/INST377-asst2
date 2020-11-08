@@ -27,33 +27,13 @@ function displaymatches(){
         <li>
             <span class="name">${place.name}</span>
             <span class="category">${place.category}</span>
-            <span class="city">${place.city}</span>
+            <address><p>
+                ${place.address_line_1}<br>
+                ${place.city}, ${place.state} ${place.zip}<br>
+            </p></address>
         </li>
         `;
     }).join('');
     suggestions.innerHTML = html;
 }
 
-
-/* 
-    - We will need a different event listener
-    - We will also need to remove some of the fluff in this method
-    - Otherwise I think this will work
-
-document.body.addEventListener('keyup', async (e) => {
-    e.preventDefault(); // this stops whatever the browser wanted to do itself.
-    const form = $(e.target).serializeArray();
-    fetch('/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(form),
-    })
-      .then((fromServer) => fromServer.json())
-      .then((jsonFromServer) => runThisWithResultsFromServer(jsonFromServer))
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-*/
